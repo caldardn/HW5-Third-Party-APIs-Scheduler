@@ -6,24 +6,40 @@ const save = $('.saveBtn')
 let todo = []
 
 const submit = function (event){
-    event.preventDefault();
+    
     // todo array
-    todo[9] = $("#9").val();
-    todo[10] = $("#10").val();
-    todo[11] = $("#11").val();
-    todo[12] = $("#12").val();
-    todo[1] = $("#1").val();
-    todo[2] = $("#2").val();
-    todo[3] = $("#3").val();
-    todo[4] = $("#4").val();
-    todo[5] = $("#5").val();
+    todo[0] = $("#9").val();
+    todo[1] = $("#10").val();
+    todo[2] = $("#11").val();
+    todo[3] = $("#12").val();
+    todo[4] = $("#1").val();
+    todo[5] = $("#2").val();
+    todo[6] = $("#3").val();
+    todo[7] = $("#4").val();
+    todo[8] = $("#5").val();
     // Stringify and set key in localStorage to todo array
     localStorage.setItem("todo", JSON.stringify(todo));
 }
 
-
-
-
+function init() {
+  // Computer gets stored results from localStorage.
+  var todoActivity = JSON.parse(localStorage.getItem("todo"));
+  // If todo were retrieved from localStorage, update the todo array to it.
+  if (todoActivity !== null) {
+      todo = todoActivity;
+      $('textarea[id="9"]').val(todo[0]);
+      $('textarea[id="10"]').val(todo[1]);
+      $('textarea[id="11"]').val(todo[2]);
+      $('textarea[id="12"]').val(todo[3]);
+      $('textarea[id="1"]').val(todo[4]);
+      $('textarea[id="2"]').val(todo[5]);
+      $('textarea[id="3"]').val(todo[6]);
+      $('textarea[id="4"]').val(todo[7]);
+      $('textarea[id="5"]').val(todo[8]);
+    } 
+  }
+  save.on('click', submit)
+  init()
 
 
 
