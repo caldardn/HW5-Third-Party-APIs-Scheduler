@@ -1,12 +1,30 @@
-var presentDay = moment().format('dddd, MMMM Do');
-$("#currentDay").text(presentDay);
-var currentHour=moment().format("HH")
+let presentDay = dayjs()
+$("#currentDay").text(presentDay.format('dddd, MMMM D'));
 
-const saveBtn = $('.saveBtn') 
+const save = $('.saveBtn')
+
+let todo = []
+
+const submit = function (event){
+    event.preventDefault();
+    // todo array
+    todo[9] = $("#9").val();
+    todo[10] = $("#10").val();
+    todo[11] = $("#11").val();
+    todo[12] = $("#12").val();
+    todo[1] = $("#1").val();
+    todo[2] = $("#2").val();
+    todo[3] = $("#3").val();
+    todo[4] = $("#4").val();
+    todo[5] = $("#5").val();
+    // Stringify and set key in localStorage to todo array
+    localStorage.setItem("todo", JSON.stringify(todo));
+}
 
 
 
-// init()
+
+
 
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
