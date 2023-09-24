@@ -1,5 +1,4 @@
 let presentDay = dayjs();
-
 let displayTime = dayjs().format("hh:mm A");
 let currentTime = dayjs().format("HH");
 let refreshBtn = $("#refresh");
@@ -19,14 +18,14 @@ const submit = function () {
   todo[6] = $("#hr3").val();
   todo[7] = $("#hr4").val();
   todo[8] = $("#hr5").val();
-  todo[9] = $("#hr8").val();
+  console.log(todo[0]);
   // Stringify and set key in localStorage to todo array
-  localStorage.setItem("todo", JSON.stringify(todo));
+  localStorage.setItem("list", JSON.stringify(todo));
 };
 
 function init() {
   // Computer gets stored results from localStorage.
-  let todoActivity = JSON.parse(localStorage.getItem("todo"));
+  let todoActivity = JSON.parse(localStorage.getItem("list"));
   // If todo were retrieved from localStorage, update the todo array to it.
   if (todoActivity !== null) {
     todo = todoActivity;
@@ -46,7 +45,7 @@ function init() {
 $(document).ready(function () {
   $(".row").each(function () {
     let timeSlot = $(this).attr("id");
-    var i = parseInt(timeSlot);
+    let i = parseInt(timeSlot);
 
     if (i < currentTime) {
       $(this).addClass("past");
@@ -61,13 +60,21 @@ $(document).ready(function () {
 });
 
 function updateTime() {
-  var clockElement = $("#currentTime");
-  clockElement.text(dayjs().format("hh:mm:ss A"));
+  let clockElement = $("#currentTime");
+  clockElement.text("Current Time: " + dayjs().format("hh:mm:ss A"));
 }
 
 setInterval(updateTime, 1000);
 
+function refreshPage(){
+  let nextHour = presentDay.add(1, 'hour').startOf('hour')
+  let timeToNextHour = nextHour.diff(presentDay)
+  setTimeout(function(){
+    location.reload()
+  }, timeToNextHour)
+}
+
 save.on("click", submit);
+
 init();
-
-
+refreshPage()

@@ -38,12 +38,12 @@ textarea {
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: hsl(182, 60%, 67%);
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: hwb(286 53% 9%);
   color: white;
 }
 
