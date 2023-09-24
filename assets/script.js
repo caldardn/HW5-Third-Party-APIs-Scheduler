@@ -8,16 +8,11 @@ $("#currentDay").text(presentDay.format("dddd, MMMM D YYYY"));
 
 //Gets the value entered by the user when they click the save button and saves it as an array.
 function submit() {
-  todo[0] = $("#hr9").val();
-  todo[1] = $("#hr10").val();
-  todo[2] = $("#hr11").val();
-  todo[3] = $("#hr12").val();
-  todo[4] = $("#hr1").val();
-  todo[5] = $("#hr2").val();
-  todo[6] = $("#hr3").val();
-  todo[7] = $("#hr4").val();
-  todo[8] = $("#hr5").val();
-  //stores the data the user subits as an array in localstorage.
+  // let todo = [];
+  for (let i = 0; i < 9; i++) {
+    todo[i] = $(`#hr${i}`).val();
+  }
+  //stores the data the user submits as an array in local storage.
   localStorage.setItem("todoList", JSON.stringify(todo));
 }
 
@@ -26,15 +21,9 @@ function init() {
   let todo = JSON.parse(localStorage.getItem("todoList"));
   // If a todo was retrieved from localStorage it will update the todo array to it.
   if (todo !== null) {
-    $('textarea[id="hr9"]').val(todo[0]);
-    $('textarea[id="hr10"]').val(todo[1]);
-    $('textarea[id="hr11"]').val(todo[2]);
-    $('textarea[id="hr12"]').val(todo[3]);
-    $('textarea[id="hr1"]').val(todo[4]);
-    $('textarea[id="hr2"]').val(todo[5]);
-    $('textarea[id="hr3"]').val(todo[6]);
-    $('textarea[id="hr4"]').val(todo[7]);
-    $('textarea[id="hr5"]').val(todo[8]);
+    for (let i = 0; i < todo.length; i++) {
+      document.getElementById(`hr${i}`).value = todo[i];
+    }
   }
 }
 
