@@ -1,43 +1,69 @@
 let presentDay = dayjs()
 $("#currentDay").text(presentDay.format('dddd, MMMM D'));
 
+let currentTime = dayjs().format('hh')
+
+console.log(currentTime)
+
+
 const save = $('.saveBtn')
 
 let todo = []
 
-const submit = function (event){
+const submit = function (){
     
     // todo array
-    todo[0] = $("#9").val();
-    todo[1] = $("#10").val();
-    todo[2] = $("#11").val();
-    todo[3] = $("#12").val();
-    todo[4] = $("#1").val();
-    todo[5] = $("#2").val();
-    todo[6] = $("#3").val();
-    todo[7] = $("#4").val();
-    todo[8] = $("#5").val();
+    todo[0] = $("#hr9").val();
+    todo[1] = $("#hr10").val();
+    todo[2] = $("#hr11").val();
+    todo[3] = $("#hr12").val();
+    todo[4] = $("#hr1").val();
+    todo[5] = $("#hr2").val();
+    todo[6] = $("#hr3").val();
+    todo[7] = $("#hr4").val();
+    todo[8] = $("#hr5").val();
+    todo[9] = $("#hr8").val();
     // Stringify and set key in localStorage to todo array
     localStorage.setItem("todo", JSON.stringify(todo));
 }
 
 function init() {
   // Computer gets stored results from localStorage.
-  var todoActivity = JSON.parse(localStorage.getItem("todo"));
+  let todoActivity = JSON.parse(localStorage.getItem("todo"));
   // If todo were retrieved from localStorage, update the todo array to it.
   if (todoActivity !== null) {
       todo = todoActivity;
-      $('textarea[id="9"]').val(todo[0]);
-      $('textarea[id="10"]').val(todo[1]);
-      $('textarea[id="11"]').val(todo[2]);
-      $('textarea[id="12"]').val(todo[3]);
-      $('textarea[id="1"]').val(todo[4]);
-      $('textarea[id="2"]').val(todo[5]);
-      $('textarea[id="3"]').val(todo[6]);
-      $('textarea[id="4"]').val(todo[7]);
-      $('textarea[id="5"]').val(todo[8]);
+      $('textarea[id="hr9"]').val(todo[0]);
+      $('textarea[id="hr10"]').val(todo[1]);
+      $('textarea[id="hr11"]').val(todo[2]);
+      $('textarea[id="hr12"]').val(todo[3]);
+      $('textarea[id="hr1"]').val(todo[4]);
+      $('textarea[id="hr2"]').val(todo[5]);
+      $('textarea[id="hr3"]').val(todo[6]);
+      $('textarea[id="hr4"]').val(todo[7]);
+      $('textarea[id="hr5"]').val(todo[8]);
+      $('textarea[id="hr8"]').val(todo[9]);
     } 
   }
+
+  
+
+
+  $(document).ready(function(){
+
+    $('.row').each(function(){
+
+      let timeSlot = $(this).attr('id')
+      var i = parseInt(timeSlot)
+      
+      if(i<currentTime){$(this).addClass('past')}
+      if(i==currentTime){$(this).addClass('present')}
+      if(i>currentTime){$(this).addClass('future')}
+
+    })
+
+  })
+
   save.on('click', submit)
   init()
 
