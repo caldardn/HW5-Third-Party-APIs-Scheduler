@@ -1,11 +1,13 @@
 let presentDay = dayjs()
-$("#currentDay").text(presentDay.format('dddd, MMMM D'));
 
-let currentTime = dayjs().format('hh')
 
+let displayTime = dayjs().format('hh:mm A')
+let currentTime = dayjs().format('HH')
+let refreshBtn = $('#refresh');
 console.log(currentTime)
 
-
+$('#currentDay').text(presentDay.format('dddd, MMMM D'));
+$('#currentTime').text("Current Session Time: " + displayTime)
 const save = $('.saveBtn')
 
 let todo = []
@@ -46,8 +48,6 @@ function init() {
     } 
   }
 
-  
-
 
   $(document).ready(function(){
 
@@ -63,6 +63,12 @@ function init() {
     })
 
   })
+
+  var refreshPage = function() {
+    location.reload();
+  
+  }
+  $('#refresh').on('click', refreshPage);
 
   save.on('click', submit)
   init()
