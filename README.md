@@ -34,4 +34,5 @@ THEN the saved events persist
 <img src="./assets/images/Application image.png" alt="An image of a daily planner from 9am-5pm">
 
 Deployed link: https://caldardn.github.io/HW5-Third-Party-APIs-Scheduler/
+
 Repo Link: https://github.com/caldardn/HW5-Third-Party-APIs-Scheduler
